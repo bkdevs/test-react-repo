@@ -1,28 +1,26 @@
-# A simple counter-App using [React.js](https://reactjs.org)
+Calculator
+---
+<img src="Logotype primary.png" width="60%" height="60%" />
 
-> **This tiny application is like adding,removing,deleting, resetting products which reflects in the total number of products into our shopping cart.**
+Created with *create-react-app*. See the [full create-react-app guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
-**This is a very basic app but useful to understand the React Components, states, Data Flow, parent to child etc. .**
 
-## Live URL 1:-
 
-> [Counter App](https://arnab-datta.github.io/counter-app/)
+Try It
+---
 
-## Live URL 2:-
+[ahfarmer.github.io/calculator](https://ahfarmer.github.io/calculator/)
 
-> [Counter App](https://obscure-waters-60500.herokuapp.com)
 
-**OR your can do the following to run in your local machine**
 
-## Scripts
+Install
+---
 
-Install node modules
+`npm install`
 
-#### `npm install`
 
-In the project directory, you can run:
 
-#### `npm start`
+Usage
+---
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+`npm start`
