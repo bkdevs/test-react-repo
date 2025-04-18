@@ -101,6 +101,16 @@ export default function calculate(obj, buttonName) {
     return {};
   }
 
+  if (buttonName === "√") {
+    if (obj.next) {
+      return { next: Math.sqrt(parseFloat(obj.next)).toString() };
+    }
+    if (obj.total) {
+      return { total: Math.sqrt(parseFloat(obj.total)).toString() };
+    }
+    return {};
+  }
+
   // Button must be an operation
 
   // When the user presses an operation button without having entered
