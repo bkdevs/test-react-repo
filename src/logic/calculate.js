@@ -103,6 +103,24 @@ export default function calculate(obj, buttonName) {
 
   // Button must be an operation
 
+  // Special case for square root
+  if (buttonName === "√") {
+    if (obj.next) {
+      return {
+        total: operate(obj.next, null, "√"),
+        next: null,
+        operation: null,
+      };
+    } else if (obj.total) {
+      return {
+        total: operate(obj.total, null, "√"),
+        next: null,
+        operation: null,
+      };
+    }
+    return {};
+  }
+
   // When the user presses an operation button without having entered
   // a number first, do nothing.
   // if (!obj.next && !obj.total) {
