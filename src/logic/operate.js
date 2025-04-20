@@ -20,5 +20,12 @@ export default function operate(numberOne, numberTwo, operation) {
       return one.div(two).toString();
     }
   }
+  if (operation === "√") {
+    if (one.lt("0")) {
+      alert("Cannot calculate square root of a negative number");
+      return "0";
+    }
+    return one.sqrt().toString();
+  }
   throw Error(`Unknown operation '${operation}'`);
 }

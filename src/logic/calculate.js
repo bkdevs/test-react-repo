@@ -91,6 +91,20 @@ export default function calculate(obj, buttonName) {
     }
   }
 
+  if (buttonName === "√") {
+    if (obj.next) {
+      return {
+        next: operate(obj.next, null, "√"),
+      };
+    }
+    if (obj.total) {
+      return {
+        total: operate(obj.total, null, "√"),
+      };
+    }
+    return {};
+  }
+
   if (buttonName === "+/-") {
     if (obj.next) {
       return { next: (-1 * parseFloat(obj.next)).toString() };
