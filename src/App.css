@@ -1,0 +1,26 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.quantum-explanation {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.explanation p {
+  text-align: left;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
