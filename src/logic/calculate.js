@@ -46,6 +46,26 @@ export default function calculate(obj, buttonName) {
     };
   }
 
+  // Trigonometric unary operations
+  if (["sin", "cos", "tan"].includes(buttonName)) {
+    // Prefer operating on next, else on total
+    if (obj.next) {
+      return {
+        next: null,
+        total: operate(obj.next, null, buttonName),
+        operation: null,
+      };
+    }
+    if (obj.total) {
+      return {
+        total: operate(obj.total, null, buttonName),
+        next: null,
+        operation: null,
+      };
+    }
+    return {};
+  }
+
   if (buttonName === "%") {
     if (obj.operation && obj.next) {
       const result = operate(obj.total, obj.next, obj.operation);
