@@ -19,6 +19,14 @@ Install
 `npm install`
 
 
+Error
+---
+
+If encountered "Error: error:0308010C:digital envelope routines::unsupported", try running the following command:
+
+`export NODE_OPTIONS=--openssl-legacy-provider`
+
+
 
 Usage
 ---
