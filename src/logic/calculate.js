@@ -13,6 +13,25 @@ import isNumber from "./isNumber";
  *   operation:String  +, -, etc.
  */
 export default function calculate(obj, buttonName) {
+  if (buttonName === "√") {
+    // Apply sqrt to next if present, else to total. Error if negative or NaN.
+    const val = obj.next != null ? obj.next : obj.total;
+    if (val == null) return {};
+    const num = parseFloat(val);
+    if (num < 0) {
+      return {
+        total: null,
+        next: 'Error',
+        operation: null,
+      };
+    }
+    return {
+      total: null,
+      next: Math.sqrt(num).toString(),
+      operation: null,
+    };
+  }
+
   if (buttonName === "AC") {
     return {
       total: null,
