@@ -13,6 +13,34 @@ import isNumber from "./isNumber";
  *   operation:String  +, -, etc.
  */
 export default function calculate(obj, buttonName) {
+  if (["sin", "cos", "tan"].includes(buttonName)) {
+    // Trigonometric functions use radians; input assumed to be degrees, so convert to radians:
+    let value = null;
+    if (obj.next !== null && obj.next !== undefined) {
+      value = parseFloat(obj.next);
+    } else if (obj.total !== null && obj.total !== undefined) {
+      value = parseFloat(obj.total);
+    }
+    if (value === null || isNaN(value)) {
+      return {};
+    }
+    const radians = value * (Math.PI / 180);
+    let result = "";
+    if (buttonName === "sin") {
+      result = Math.sin(radians);
+    } else if (buttonName === "cos") {
+      result = Math.cos(radians);
+    } else if (buttonName === "tan") {
+      result = Math.tan(radians);
+    }
+    // Round to avoid long decimals
+    result = Math.round((result + Number.EPSILON) * 1000000000) / 1000000000;
+    return {
+      total: result.toString(),
+      next: null,
+      operation: null,
+    };
+  }
   if (buttonName === "AC") {
     return {
       total: null,
