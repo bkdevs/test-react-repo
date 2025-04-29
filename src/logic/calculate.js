@@ -13,6 +13,27 @@ import isNumber from "./isNumber";
  *   operation:String  +, -, etc.
  */
 export default function calculate(obj, buttonName) {
+  // Handle trigonometric operations
+  if (buttonName === "sin" || buttonName === "cos" || buttonName === "tan") {
+    const value = obj.next ?? obj.total;
+    if (value) {
+      // Interpret the input as degrees
+      const num = parseFloat(value);
+      const radians = (num * Math.PI) / 180;
+      let result;
+      if (buttonName === "sin") result = Math.sin(radians);
+      if (buttonName === "cos") result = Math.cos(radians);
+      if (buttonName === "tan") result = Math.tan(radians);
+      // Round off tiny floating-point errors for very small values
+      result = Math.abs(result) < 1e-15 ? 0 : result;
+      return {
+        total: result.toString(),
+        next: null,
+        operation: null,
+      };
+    }
+    return {};
+  }
   if (buttonName === "AC") {
     return {
       total: null,
