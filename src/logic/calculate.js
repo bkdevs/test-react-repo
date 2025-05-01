@@ -13,8 +13,8 @@ import isNumber from "./isNumber";
  *   operation:String  +, -, etc.
  */
 export default function calculate(obj, buttonName) {
-  if (["sin", "cos", "tan"].includes(buttonName)) {
-    // Trigonometric functions use radians; input assumed to be degrees, so convert to radians:
+  if (["sin", "cos", "tan", "log", "ln"].includes(buttonName)) {
+    // Trigonometric and logarithmic functions
     let value = null;
     if (obj.next !== null && obj.next !== undefined) {
       value = parseFloat(obj.next);
@@ -24,17 +24,39 @@ export default function calculate(obj, buttonName) {
     if (value === null || isNaN(value)) {
       return {};
     }
-    const radians = value * (Math.PI / 180);
+
     let result = "";
-    if (buttonName === "sin") {
-      result = Math.sin(radians);
-    } else if (buttonName === "cos") {
-      result = Math.cos(radians);
-    } else if (buttonName === "tan") {
-      result = Math.tan(radians);
+
+    if (["sin", "cos", "tan"].includes(buttonName)) {
+      // Trigonometric functions use radians; input assumed to be degrees, so convert to radians:
+      const radians = value * (Math.PI / 180);
+      if (buttonName === "sin") {
+        result = Math.sin(radians);
+      } else if (buttonName === "cos") {
+        result = Math.cos(radians);
+      } else if (buttonName === "tan") {
+        result = Math.tan(radians);
+      }
+      // Round to avoid long decimals
+      result = Math.round((result + Number.EPSILON) * 1000000000) / 1000000000;
+    } else if (buttonName === "log") {
+      // Logarithm base 10
+      if (value <= 0) {
+        result = 'Error';
+      } else {
+        result = Math.log10(value);
+        result = Math.round((result + Number.EPSILON) * 1000000000) / 1000000000;
+      }
+    } else if (buttonName === "ln") {
+      // Natural logarithm
+      if (value <= 0) {
+        result = 'Error';
+      } else {
+        result = Math.log(value);
+        result = Math.round((result + Number.EPSILON) * 1000000000) / 1000000000;
+      }
     }
-    // Round to avoid long decimals
-    result = Math.round((result + Number.EPSILON) * 1000000000) / 1000000000;
+
     return {
       total: result.toString(),
       next: null,
