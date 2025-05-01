@@ -32,6 +32,38 @@ function test(buttons, expectation, only = false) {
 }
 
 describe("calculate", function() {
+  // --- Trigonometric Function Tests ---
+  // sin
+  test(["0", "sin"], { total: "0" });
+  test(["30", "sin"], { total: "0.5" });
+  test(["45", "sin"], { total: "0.707106781" }); // sqrt(2)/2
+  test(["90", "sin"], { total: "1" });
+  test(["180", "sin"], { total: "0" });
+  test(["270", "sin"], { total: "-1" });
+  test(["360", "sin"], { total: "0" });
+  test(["-90", "sin"], { total: "-1" });
+
+  // cos
+  test(["0", "cos"], { total: "1" });
+  test(["60", "cos"], { total: "0.5" });
+  test(["90", "cos"], { total: "0" });
+  test(["180", "cos"], { total: "-1" });
+  test(["270", "cos"], { total: "0" });
+  test(["360", "cos"], { total: "1" });
+  test(["-180", "cos"], { total: "-1" });
+
+  // tan
+  test(["0", "tan"], { total: "0" });
+  test(["45", "tan"], { total: "1" });
+  test(["135", "tan"], { total: "-1" });
+  test(["-45", "tan"], { total: "-1" });
+  // tan(90) and tan(270) should be extremely large numbers (Infinity in pure math, very large in JS)
+  test(["89", "tan"], { total: "57.28996163" });
+  test(["90", "tan"], { total: "1633123935.8" }); // JS: 1.633123935319537e+16 but rounded to 9 digits (in calculate.js)
+  test(["270", "tan"], { total: "5443746451.004" }); // JS result for tan(270°) rounded
+  test(["360", "tan"], { total: "0" });
+  // negative angle
+  test(["-45", "tan"], { total: "-1" });
   test(["6"], { next: "6" });
 
   test(["6", "6"], { next: "66" });
