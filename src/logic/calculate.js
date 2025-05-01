@@ -13,6 +13,40 @@ import isNumber from "./isNumber";
  *   operation:String  +, -, etc.
  */
 export default function calculate(obj, buttonName) {
+  if (["x²", "√"].includes(buttonName)) {
+    let value = null;
+    if (obj.next !== null && obj.next !== undefined) {
+      value = parseFloat(obj.next);
+    } else if (obj.total !== null && obj.total !== undefined) {
+      value = parseFloat(obj.total);
+    }
+    if (value === null || isNaN(value)) {
+      return {};
+    }
+    let result = null;
+    if (buttonName === "x²") {
+      result = value * value;
+    } else if (buttonName === "√") {
+      if (value < 0) {
+        result = 'Invalid';
+        return {
+          total: result,
+          next: null,
+          operation: null,
+        };
+      }
+      result = Math.sqrt(value);
+    }
+    // Round to avoid long decimals
+    if (typeof result === 'number') {
+      result = Math.round((result + Number.EPSILON) * 1000000000) / 1000000000;
+    }
+    return {
+      total: result.toString(),
+      next: null,
+      operation: null,
+    };
+  }
   if (["sin", "cos", "tan"].includes(buttonName)) {
     // Trigonometric functions use radians; input assumed to be degrees, so convert to radians:
     let value = null;
