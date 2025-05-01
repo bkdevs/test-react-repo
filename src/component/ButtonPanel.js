@@ -16,6 +16,12 @@ export default class ButtonPanel extends React.Component {
   render() {
     return (
       <div className="component-button-panel">
+        {/* Random Number Generator Buttons */}
+        <div>
+          <Button name="Rand 1" clickHandler={this.handleClick} />
+          <Button name="Rand 2" clickHandler={this.handleClick} />
+          <Button name="Rand 3" clickHandler={this.handleClick} />
+        </div>
         <div>
           <Button name="sin" clickHandler={this.handleClick} />
           <Button name="cos" clickHandler={this.handleClick} />
