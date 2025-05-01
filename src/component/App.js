@@ -12,6 +12,16 @@ export default class App extends React.Component {
   };
 
   handleClick = buttonName => {
+    if (buttonName === "Rand") {
+      // Generate a random integer between 0 and 9999
+      const randomNum = Math.floor(Math.random() * 10000);
+      this.setState({
+        total: null,
+        next: String(randomNum),
+        operation: null
+      });
+      return;
+    }
     this.setState(calculate(this.state, buttonName));
   };
 
