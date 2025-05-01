@@ -15,6 +15,12 @@
   margin: 0 1px 0 0;
   flex: 1 0 auto;
   padding: 0;
+  transition: opacity 0.18s cubic-bezier(.4,2,.6,1), transform 0.18s cubic-bezier(.4,2,.6,1);
+}
+
+.component-button button:active {
+  opacity: 0.5;
+  transform: scale(0.97);
 }
 
 .component-button:last-child button {
