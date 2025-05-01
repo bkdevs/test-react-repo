@@ -10,12 +10,32 @@ export default class ButtonPanel extends React.Component {
   };
 
   handleClick = buttonName => {
+    if (buttonName === "Rand9") {
+      const rand = Math.floor(Math.random() * 10).toString();
+      this.props.clickHandler(rand);
+      return;
+    }
+    if (buttonName === "Rand99") {
+      const rand = Math.floor(Math.random() * 100).toString();
+      this.props.clickHandler(rand);
+      return;
+    }
+    if (buttonName === "Rand999") {
+      const rand = Math.floor(Math.random() * 1000).toString();
+      this.props.clickHandler(rand);
+      return;
+    }
     this.props.clickHandler(buttonName);
   };
 
   render() {
     return (
       <div className="component-button-panel">
+        <div>
+          <Button name="Rand9" clickHandler={this.handleClick} />
+          <Button name="Rand99" clickHandler={this.handleClick} />
+          <Button name="Rand999" clickHandler={this.handleClick} />
+        </div>
         <div>
           <Button name="sin" clickHandler={this.handleClick} />
           <Button name="cos" clickHandler={this.handleClick} />
