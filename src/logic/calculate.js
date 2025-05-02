@@ -13,6 +13,19 @@ import isNumber from "./isNumber";
  *   operation:String  +, -, etc.
  */
 export default function calculate(obj, buttonName) {
+  if (buttonName === "π" || buttonName === "e") {
+    const value = (buttonName === "π") ? Math.PI.toString() : Math.E.toString();
+    if (obj.operation) {
+      // If an operation is in progress, assign value to next
+      return { ...obj, next: value };
+    }
+    // Otherwise, assign to next, clear total
+    return {
+      ...obj,
+      next: value,
+      total: null,
+    };
+  }
   if (["sin", "cos", "tan"].includes(buttonName)) {
     // Trigonometric functions use radians; input assumed to be degrees, so convert to radians:
     let value = null;
