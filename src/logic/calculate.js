@@ -13,6 +13,18 @@ import isNumber from "./isNumber";
  *   operation:String  +, -, etc.
  */
 export default function calculate(obj, buttonName) {
+  if (buttonName === "e") {
+    // If pressing 'e', treat as numeric entry for Euler's number
+    const eString = "2.718281828";
+    if (obj.operation) {
+      // If we are in the middle of entering the next number, set next to e
+      return { ...obj, next: eString };
+    } else {
+      // Otherwise, treat as a fresh entry
+      return { next: eString, total: null, operation: null };
+    }
+  }
+
   if (["sin", "cos", "tan"].includes(buttonName)) {
     // Trigonometric functions use radians; input assumed to be degrees, so convert to radians:
     let value = null;
