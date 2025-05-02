@@ -13,6 +13,13 @@ import isNumber from "./isNumber";
  *   operation:String  +, -, etc.
  */
 export default function calculate(obj, buttonName) {
+  if (buttonName === "π") {
+    return {
+      ...obj,
+      next: Math.PI.toString(),
+      operation: obj.operation ? obj.operation : null,
+    };
+  }
   if (["sin", "cos", "tan"].includes(buttonName)) {
     // Trigonometric functions use radians; input assumed to be degrees, so convert to radians:
     let value = null;
