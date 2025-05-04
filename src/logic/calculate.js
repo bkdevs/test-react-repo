@@ -49,6 +49,27 @@ export default function calculate(obj, buttonName) {
     };
   }
 
+  // Handle mathematical constant e button
+  if (buttonName === "e") {
+    if (obj.operation) {
+      if (obj.next) {
+        return { next: obj.next + "2.718281828459045" };
+      }
+      return { next: "2.718281828459045" };
+    }
+    if (obj.next) {
+      const next = obj.next === "0" ? "2.718281828459045" : obj.next + "2.718281828459045";
+      return {
+        next,
+        total: null,
+      };
+    }
+    return {
+      next: "2.718281828459045",
+      total: null,
+    };
+  }
+
   if (isNumber(buttonName)) {
     if (buttonName === "0" && obj.next === "0") {
       return {};
