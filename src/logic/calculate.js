@@ -13,8 +13,7 @@ import isNumber from "./isNumber";
  *   operation:String  +, -, etc.
  */
 export default function calculate(obj, buttonName) {
-  if (["sin", "cos", "tan"].includes(buttonName)) {
-    // Trigonometric functions use radians; input assumed to be degrees, so convert to radians:
+  if (["sin", "cos", "tan", "ln"].includes(buttonName)) {
     let value = null;
     if (obj.next !== null && obj.next !== undefined) {
       value = parseFloat(obj.next);
@@ -24,6 +23,23 @@ export default function calculate(obj, buttonName) {
     if (value === null || isNaN(value)) {
       return {};
     }
+    if (buttonName === "ln") {
+      if (value <= 0) {
+        return {
+          total: "Error",
+          next: null,
+          operation: null,
+        };
+      }
+      let result = Math.log(value);
+      result = Math.round((result + Number.EPSILON) * 1000000000) / 1000000000;
+      return {
+        total: result.toString(),
+        next: null,
+        operation: null,
+      };
+    }
+    // Trigonometric functions use radians; input assumed to be degrees, so convert to radians:
     const radians = value * (Math.PI / 180);
     let result = "";
     if (buttonName === "sin") {
