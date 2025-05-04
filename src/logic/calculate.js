@@ -3,6 +3,11 @@ import Big from "big.js";
 import operate from "./operate";
 import isNumber from "./isNumber";
 
+// Extend isNumber to also treat 'e' as insertable constant:
+function isNumberOrConstant(item) {
+  return /[0-9]+/.test(item) || item === 'e';
+}
+
 /**
  * Given a button name and a calculator data object, return an updated
  * calculator data object.
@@ -13,6 +18,29 @@ import isNumber from "./isNumber";
  *   operation:String  +, -, etc.
  */
 export default function calculate(obj, buttonName) {
+  // Handle 'e' button press – acts like a number input but inserts Math.E
+  if (buttonName === "e") {
+    // Insert Math.E constant as a string
+    // If an operation is active, treat as next input
+    const eValue = Math.E.toString();
+    if (obj.operation) {
+      return { ...obj, next: obj.next ? obj.next + eValue : eValue };
+    }
+    // Otherwise, insert as next/total as appropriate
+    if (obj.next) {
+      return {
+        ...obj,
+        next: obj.next + eValue,
+        total: null,
+      };
+    }
+    return {
+      ...obj,
+      next: eValue,
+      total: null,
+    };
+  }
+
   if (["sin", "cos", "tan"].includes(buttonName)) {
     // Trigonometric functions use radians; input assumed to be degrees, so convert to radians:
     let value = null;
@@ -49,7 +77,7 @@ export default function calculate(obj, buttonName) {
     };
   }
 
-  if (isNumber(buttonName)) {
+  if (isNumberOrConstant(buttonName)) {
     if (buttonName === "0" && obj.next === "0") {
       return {};
     }
