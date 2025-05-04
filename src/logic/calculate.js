@@ -41,6 +41,19 @@ export default function calculate(obj, buttonName) {
       operation: null,
     };
   }
+
+  if (buttonName === "e") {
+    // Insert Euler's number as next if there is not already a next value, otherwise replace next with e
+    const value = Math.E.toString();
+    if (obj.operation) {
+      return { next: value };
+    }
+    // If operation not set, clear total and set next as e
+    return {
+      next: value,
+      total: null,
+    };
+  }
   if (buttonName === "AC") {
     return {
       total: null,
