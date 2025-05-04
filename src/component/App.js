@@ -1,6 +1,7 @@
 import React from "react";
 import Display from "./Display";
 import ButtonPanel from "./ButtonPanel";
+import SquaredButton from "./SquaredButton";
 import calculate from "../logic/calculate";
 import "./App.css";
 
@@ -20,6 +21,9 @@ export default class App extends React.Component {
       <div className="component-app">
         <Display value={this.state.next || this.state.total || "0"} />
         <ButtonPanel clickHandler={this.handleClick} />
+        <div style={{ marginTop: 20 }}>
+          <SquaredButton onClick={() => alert('Squared Button Clicked!')}>Squared</SquaredButton>
+        </div>
       </div>
     );
   }
