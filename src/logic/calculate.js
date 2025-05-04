@@ -41,6 +41,14 @@ export default function calculate(obj, buttonName) {
       operation: null,
     };
   }
+
+  if (buttonName === 'e') {
+    // Insert Euler's number as if it's a numeric constant
+    if (obj.operation) {
+      return { next: Math.E.toString() };
+    }
+    return { next: Math.E.toString(), total: null };
+  }
   if (buttonName === "AC") {
     return {
       total: null,
