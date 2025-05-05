@@ -10,7 +10,23 @@ function pressButtons(buttons) {
   const value = {};
   buttons.forEach(button => {
     Object.assign(value, calculate(value, button));
+    // Square root tests
+  test(["9", "√"], {
+    total: "3"
   });
+
+  test(["2", "5", "√"], {
+    total: "5"
+  });
+
+  test(["0", "√"], {
+    total: "0"
+  });
+
+  test(["-4", "√"], {
+    total: "Error"
+  });
+});
   // no need to distinguish between null and undefined values
   Object.keys(value).forEach(key => {
     if (value[key] === null) {
