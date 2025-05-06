@@ -51,6 +51,20 @@ export default function calculate(obj, buttonName) {
       operation: null,
     };
   }
+
+  // Handle e button (Euler's number)
+  if (buttonName === "e") {
+    if (obj.operation) {
+      // In the middle of an operation, set as next
+      return { ...obj, next: "2.718281828459045" };
+    }
+    // Otherwise, set as next and clear previous calculation
+    return {
+      total: null,
+      next: "2.718281828459045",
+      operation: null,
+    };
+  }
   if (buttonName === "AC") {
     return {
       total: null,
