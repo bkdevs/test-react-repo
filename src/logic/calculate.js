@@ -51,6 +51,17 @@ export default function calculate(obj, buttonName) {
       operation: null,
     };
   }
+
+  // Add handler for Euler's number 'e' button
+  if (buttonName === "e") {
+    // Insert Euler's number 2.718281828...
+    if (obj.operation) {
+      // currently entering 'next'
+      return { next: (obj.next || "") + "2.718281828459045" };
+    } else {
+      return { next: (obj.next ? obj.next + "2.718281828459045" : "2.718281828459045"), total: null };
+    }
+  }
   if (buttonName === "AC") {
     return {
       total: null,
