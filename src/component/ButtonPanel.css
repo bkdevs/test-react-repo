@@ -1,14 +1,27 @@
 .component-button-panel {
-  background-color: #858694;
+  background-color: #22252A;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   flex: 1 0 auto;
+  width: 100%;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  padding-bottom: 0.4rem;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.09) inset;
+  box-sizing: border-box;
 }
 
 .component-button-panel > div {
   width: 100%;
-  margin-bottom: 1px;
+  margin-bottom: 0.5rem;
   flex: 1 0 auto;
   display: flex;
+}
+
+@media (max-width: 600px) {
+  .component-button-panel {
+    border-radius: 1.2rem 1.2rem 1.2rem 1.2rem;
+    padding-bottom: 0.2rem;
+  }
 }

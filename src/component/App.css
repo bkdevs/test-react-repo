@@ -1,6 +1,18 @@
 .component-app {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  height: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100vw;
+  max-width: 400px;
+  min-width: 280px;
+  min-height: 480px;
+  height: 80vh;
+  max-height: 720px;
+  margin: auto;
+  padding: 1.2rem 0.6rem;
+  background: #22252A;
+  border-radius: 2.2rem;
+  box-shadow: 0 4px 36px rgba(0,0,0,0.15), 0 1.5px 3px rgba(0,0,0,0.08);
+  box-sizing: border-box;
 }
