@@ -51,6 +51,15 @@ export default function calculate(obj, buttonName) {
       operation: null,
     };
   }
+  // Handle "e" button
+  if (buttonName === "e") {
+    // e is a constant, like PI but Euler's number
+    // If inside an operation, treat as "next", else as the total
+    if (obj.operation) {
+      return { next: Math.E.toString() };
+    }
+    return { next: Math.E.toString(), total: null };
+  }
   if (buttonName === "AC") {
     return {
       total: null,
