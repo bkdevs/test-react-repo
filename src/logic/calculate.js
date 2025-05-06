@@ -3,6 +3,8 @@ import Big from "big.js";
 import operate from "./operate";
 import isNumber from "./isNumber";
 
+const E_CONSTANT = Math.E.toString();
+
 /**
  * Given a button name and a calculator data object, return an updated
  * calculator data object.
@@ -50,6 +52,14 @@ export default function calculate(obj, buttonName) {
       next: null,
       operation: null,
     };
+  }
+
+  // E button logic
+  if (buttonName === "e") {
+    if (obj.operation) {
+      return { next: E_CONSTANT };
+    }
+    return { next: E_CONSTANT, total: null };
   }
   if (buttonName === "AC") {
     return {
