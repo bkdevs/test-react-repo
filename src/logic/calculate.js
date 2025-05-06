@@ -51,6 +51,22 @@ export default function calculate(obj, buttonName) {
       operation: null,
     };
   }
+
+  // Handle the 'e' button to input Euler's number
+  if (buttonName === "e") {
+    // Add Euler's number as next if entering a new operand, else as total if nothing yet
+    const eValue = Math.E.toString();
+    if (obj.operation) {
+      // If operation is set, add 'e' as 'next'
+      return { ...obj, next: eValue };
+    }
+    // If entering a new calculation or replacing current
+    return {
+      total: null,
+      next: eValue,
+      operation: null,
+    };
+  }
   if (buttonName === "AC") {
     return {
       total: null,
