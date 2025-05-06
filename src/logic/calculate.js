@@ -51,6 +51,29 @@ export default function calculate(obj, buttonName) {
       operation: null,
     };
   }
+
+  // Handle mathematical constant 'e'
+  if (buttonName === "e") {
+    const E_VALUE = "2.718281828459045";
+    // If there is an operation, we're entering the next argument
+    if (obj.operation) {
+      if (obj.next) {
+        return { next: obj.next + E_VALUE };
+      }
+      return { next: E_VALUE };
+    }
+    // If there is no operation, start fresh or append
+    if (obj.next) {
+      return {
+        next: obj.next + E_VALUE,
+        total: null,
+      };
+    }
+    return {
+      next: E_VALUE,
+      total: null,
+    };
+  }
   if (buttonName === "AC") {
     return {
       total: null,
