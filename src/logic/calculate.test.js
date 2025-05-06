@@ -186,4 +186,20 @@ describe("calculate", function() {
     total: "2",
     operation: 'x'
   });
+
+  // Test e button as single input
+  test(["e"], {
+    next: Math.E.toString()
+  });
+  // Test e button after number input
+  test(["2", "e"], {
+    next: "2" + Math.E.toString(),
+    total: null
+  });
+  // Test e button after operator
+  test(["2", "+", "e"], {
+    next: Math.E.toString(),
+    total: "2",
+    operation: "+"
+  });
 });
