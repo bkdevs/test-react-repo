@@ -18,6 +18,16 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="component-app">
+        <button
+          style={{
+            display: "block",
+            margin: "0 auto 10px auto",
+            padding: "6px 16px",
+            fontSize: "18px"
+          }}
+        >
+          e
+        </button>
         <Display value={this.state.next || this.state.total || "0"} />
         <ButtonPanel clickHandler={this.handleClick} />
       </div>
