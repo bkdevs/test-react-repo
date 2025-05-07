@@ -3,6 +3,8 @@ import Big from "big.js";
 import operate from "./operate";
 import isNumber from "./isNumber";
 
+const E_CONSTANT = 2.718281828459045;
+
 /**
  * Given a button name and a calculator data object, return an updated
  * calculator data object.
@@ -13,6 +15,19 @@ import isNumber from "./isNumber";
  *   operation:String  +, -, etc.
  */
 export default function calculate(obj, buttonName) {
+  if (buttonName === "e") {
+    // Input Euler's number as a constant
+    if (obj.operation) {
+      // If user is typing the right-hand operand
+      return { ...obj, next: (obj.next || "") + E_CONSTANT.toString() };
+    } else {
+      // If user is typing the left-hand operand
+      return {
+        next: (obj.next || "") + E_CONSTANT.toString(),
+        total: null,
+      };
+    }
+  }
   if (["sin", "cos", "tan", "√"].includes(buttonName)) {
     // Supported scientific functions. Trig use radians; input is degrees. √ operates on present value.
     let value = null;
