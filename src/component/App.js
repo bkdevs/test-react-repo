@@ -1,6 +1,7 @@
 import React from "react";
 import Display from "./Display";
 import ButtonPanel from "./ButtonPanel";
+import Button from "./Button";
 import calculate from "../logic/calculate";
 import "./App.css";
 
@@ -18,6 +19,12 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="component-app">
+        {/* Trigonometric buttons above the display */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 10, gap: 10 }}>
+          <Button name="sin" clickHandler={this.handleClick} />
+          <Button name="cos" clickHandler={this.handleClick} />
+          <Button name="tan" clickHandler={this.handleClick} />
+        </div>
         <Display value={this.state.next || this.state.total || "0"} />
         <ButtonPanel clickHandler={this.handleClick} />
       </div>
