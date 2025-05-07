@@ -13,8 +13,16 @@ import isNumber from "./isNumber";
  *   operation:String  +, -, etc.
  */
 export default function calculate(obj, buttonName) {
-  if (["sin", "cos", "tan", "√"].includes(buttonName)) {
-    // Supported scientific functions. Trig use radians; input is degrees. √ operates on present value.
+  if (["sin", "cos", "tan", "√", "e"].includes(buttonName)) {
+    // Supported scientific functions. Trig use radians; input is degrees. √ operates on present value. "e" inserts Euler's number.
+    if (buttonName === "e") {
+      // Set next value to Euler's number (rounded to 9 decimal places, similar to PI on calculators)
+      return {
+        next: Math.E.toFixed(9).replace(/0+$/, '').replace(/\.$/, ''),
+        total: null,
+        operation: null,
+      };
+    }
     let value = null;
     if (obj.next !== null && obj.next !== undefined) {
       value = parseFloat(obj.next);
