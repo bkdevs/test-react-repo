@@ -18,6 +18,19 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="component-app">
+        <button 
+          className="special-button"
+          onClick={() => this.handleClick("e")}
+          style={{
+            margin: "0 auto 10px auto",
+            display: "block",
+            fontSize: "1.2em",
+            width: "48px",
+            height: "48px"
+          }}
+        >
+          e
+        </button>
         <Display value={this.state.next || this.state.total || "0"} />
         <ButtonPanel clickHandler={this.handleClick} />
       </div>
