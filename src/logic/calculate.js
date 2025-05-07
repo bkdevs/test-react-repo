@@ -13,6 +13,18 @@ import isNumber from "./isNumber";
  *   operation:String  +, -, etc.
  */
 export default function calculate(obj, buttonName) {
+  if (buttonName === "π") {
+    // Insert the value of pi, either as next or as total
+    const piValue = Math.PI.toString();
+    if (obj.operation) {
+      return { next: piValue };
+    }
+    return {
+      next: piValue,
+      total: null,
+      operation: null,
+    };
+  }
   if (["sin", "cos", "tan", "√"].includes(buttonName)) {
     // Supported scientific functions. Trig use radians; input is degrees. √ operates on present value.
     let value = null;
