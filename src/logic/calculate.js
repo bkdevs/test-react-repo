@@ -59,27 +59,30 @@ export default function calculate(obj, buttonName) {
     };
   }
 
-  if (isNumber(buttonName)) {
+  if (isNumber(buttonName) || buttonName === "e") {
     if (buttonName === "0" && obj.next === "0") {
       return {};
     }
     // If there is an operation, update next
     if (obj.operation) {
       if (obj.next) {
+        if (buttonName === "e") {
+          return { next: obj.next + Math.E.toString() };
+        }
         return { next: obj.next + buttonName };
       }
-      return { next: buttonName };
+      return { next: buttonName === "e" ? Math.E.toString() : buttonName };
     }
     // If there is no operation, update next and clear the value
     if (obj.next) {
-      const next = obj.next === "0" ? buttonName : obj.next + buttonName;
+      const next = obj.next === "0" ? (buttonName === "e" ? Math.E.toString() : buttonName) : (buttonName === "e" ? obj.next + Math.E.toString() : obj.next + buttonName);
       return {
         next,
         total: null,
       };
     }
     return {
-      next: buttonName,
+      next: buttonName === "e" ? Math.E.toString() : buttonName,
       total: null,
     };
   }
