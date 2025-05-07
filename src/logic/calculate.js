@@ -13,6 +13,13 @@ import isNumber from "./isNumber";
  *   operation:String  +, -, etc.
  */
 export default function calculate(obj, buttonName) {
+  if (buttonName === "e") {
+    // Insert Euler's number as the next value
+    return {
+      ...obj,
+      next: "2.718281828459045"
+    };
+  }
   if (["sin", "cos", "tan", "√"].includes(buttonName)) {
     // Supported scientific functions. Trig use radians; input is degrees. √ operates on present value.
     let value = null;
