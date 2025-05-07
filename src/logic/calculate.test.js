@@ -48,6 +48,12 @@ function test(buttons, expectation, only = false) {
 }
 
 describe("calculate", function() {
+  // --- e button tests ---
+  test(["e"], { next: "2.718281828459045" });
+  test(["e", "+", "1", "="], { total: "3.718281828459045" });
+  test(["1", "+", "e", "="], { total: "3.718281828459045" });
+  test(["e", "+/-"], { next: "-2.718281828459045" });
+  test(["e", "+", "e"], { next: "2.718281828459045", total: "2.718281828459045", operation: "+" });
   test(["6"], { next: "6" });
 
   test(["6", "6"], { next: "66" });

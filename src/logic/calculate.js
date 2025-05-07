@@ -3,6 +3,8 @@ import Big from "big.js";
 import operate from "./operate";
 import isNumber from "./isNumber";
 
+const E_CONST = "2.718281828459045";
+
 /**
  * Given a button name and a calculator data object, return an updated
  * calculator data object.
@@ -13,6 +15,14 @@ import isNumber from "./isNumber";
  *   operation:String  +, -, etc.
  */
 export default function calculate(obj, buttonName) {
+  if (buttonName === "e") {
+    // If an operation is pending, set next; else, set next normally (as a number button)
+    if (obj.operation) {
+      return { next: E_CONST };
+    } else {
+      return { next: E_CONST, total: null };
+    }
+  }
   if (["sin", "cos", "tan", "√"].includes(buttonName)) {
     // Supported scientific functions. Trig use radians; input is degrees. √ operates on present value.
     let value = null;
