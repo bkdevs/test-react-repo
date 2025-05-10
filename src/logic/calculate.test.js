@@ -48,6 +48,7 @@ function test(buttons, expectation, only = false) {
 }
 
 describe("calculate", function() {
+  test(["e"], { next: "2.718281828" });
   test(["6"], { next: "6" });
 
   test(["6", "6"], { next: "66" });
