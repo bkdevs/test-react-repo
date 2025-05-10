@@ -13,6 +13,13 @@ import isNumber from "./isNumber";
  *   operation:String  +, -, etc.
  */
 export default function calculate(obj, buttonName) {
+  if (buttonName === "e") {
+    return {
+      next: "2.718281828",
+      total: null,
+      operation: null,
+    };
+  }
   if (["sin", "cos", "tan", "√"].includes(buttonName)) {
     // Supported scientific functions. Trig use radians; input is degrees. √ operates on present value.
     let value = null;
